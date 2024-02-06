@@ -29,11 +29,12 @@
         }
     </style>
     <script>
+        let r = 0;
         let tomb = []
         let html = "";
         function start(){
             for (let i = 0; i < 9; i++){ tomb[i] = []; for (let j = 0; j < 12; j++){
-                    html += "<img id='"+i+"x"+j+"' onmouseleave='leave("+i+","+j+")' onmouseover='over("+i+","+j+")' src='repa.png'>"
+                    html += "<img onclick='katt("+i+","+j+")' id='"+i+"x"+j+"' onmouseleave='leave("+i+","+j+")' onmouseover='over("+i+","+j+")' src='repa.png'>"
                     tomb[i][j] = "R";
                 }
             }
@@ -57,6 +58,73 @@
 
         function over(i, j){
             document.getElementById(i+"x"+j).setAttribute("style", "background-color: #99ccff");
+        }
+
+        function katt(i,j){
+            if (tomb[i][j] == "R"){
+                if (i < 8){
+                if (tomb[i+1][j] == "N"){
+                    tomb[i][j] = "N";
+                    document.getElementById(i+"x"+j).src = "nyuszi.png";
+                    tomb[i+1][j] = "U";
+                    document.getElementById((i+1)+"x"+j).src = "ures.png";
+                    r++;
+                    document.getElementById("db").innerHTML = r+" darab";
+                    if (r == (9*12)-21){
+                alert("Győztél!");
+            }
+                    return
+                }
+            }
+            if (i > 0){
+                if (tomb[i-1][j] == "N"){
+                    tomb[i][j] = "N";
+                    document.getElementById(i+"x"+j).src = "nyuszi.png";
+                    tomb[i-1][j] = "U";
+                    document.getElementById((i-1)+"x"+j).src = "ures.png";
+                    r++;
+                    document.getElementById("db").innerHTML = r+" darab";
+                    if (r == (9*12)-21){
+                alert("Győztél!");
+            }
+                    return
+                }
+            }
+            if (j < 11){
+                if (tomb[i][j+1] == "N"){
+                    tomb[i][j] = "N";
+                    document.getElementById(i+"x"+j).src = "nyuszi.png";
+                    tomb[i][j+1] = "U";
+                    document.getElementById(i+"x"+(j+1)).src = "ures.png";
+                    r++;
+                    document.getElementById("db").innerHTML = r+" darab";
+                    if (r == (9*12)-21){
+                alert("Győztél!");
+            }
+                    return
+                }
+            }
+            if (j > 0){
+                if (tomb[i][j-1] == "N"){
+                    tomb[i][j] = "N";
+                    document.getElementById(i+"x"+j).src = "nyuszi.png";
+                    tomb[i][j-1] = "U";
+                    document.getElementById(i+"x"+(j-1)).src = "ures.png";
+                    r++;
+                    document.getElementById("db").innerHTML = r+" darab";
+                    if (r == (9*12)-21){
+                alert("Győztél!");
+            }
+                    return
+                }
+            }
+            }
+            if (tomb[i][j] == "U"){
+                tomb[i][j] = "R";
+                    document.getElementById(i+"x"+j).src = "repa.png";
+                r--;
+                document.getElementById("db").innerHTML = r+" darab";
+            }
         }
     </script>
 </head>
