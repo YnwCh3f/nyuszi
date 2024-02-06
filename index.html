@@ -33,6 +33,10 @@
         let tomb = []
         let html = "";
         function start(){
+            r = 0;
+            document.getElementById("db").innerHTML = r+" darab";
+            html = "";
+            document.getElementById("container").innerHTML = html;
             for (let i = 0; i < 9; i++){ tomb[i] = []; for (let j = 0; j < 12; j++){
                     html += "<img onclick='katt("+i+","+j+")' id='"+i+"x"+j+"' onmouseleave='leave("+i+","+j+")' onmouseover='over("+i+","+j+")' src='repa.png'>"
                     tomb[i][j] = "R";
@@ -135,7 +139,7 @@
     <div id="stat"> 
         <img id="repa" src="repa.png">
         <span id="db">0 darab</span>
-        <img id="ujra" src="ujra.png">
+        <img onclick="start();" id="ujra" src="ujra.png">
     </div>
 </body>
 </html>
