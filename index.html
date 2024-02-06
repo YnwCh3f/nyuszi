@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyuszi</title>
+    <style>
+        body{
+            background-color: aquamarine;
+        }
+        #container{
+            background-color: white;
+            border: solid 1px black;
+            width: 864px;
+            margin: 0px auto;
+            padding: 10px;
+        }
+        #repa,#ujra{
+            background-color: white;
+            border: solid 1px black;
+        }
+        #stat{
+            text-align: center;
+            margin-top: 10px;
+        }
+        #db{
+            height: fit-content;
+            margin: auto;
+        }
+    </style>
+    <script>
+        let tomb = []
+        let html = "";
+        function start(){
+            for (let i = 0; i < 9; i++){ tomb[i] = []; for (let j = 0; j < 12; j++){
+                    html += "<img id='"+i+"x"+j+"' onmouseleave='leave("+i+","+j+")' onmouseover='over("+i+","+j+")' src='ures.png'>"
+                }
+            }
+            document.getElementById("container").innerHTML = html;
+        }
+
+        function leave(i, j){
+            document.getElementById(i+"x"+j).setAttribute("style", "background-color: white");
+        }
+
+        function over(i, j){
+            document.getElementById(i+"x"+j).setAttribute("style", "background-color: #99ccff");
+        }
+    </script>
+</head>
+<body onload="start();">
+    <div id="container">
+
+    </div>
+    <div id="stat"> 
+        <img id="repa" src="repa.png">
+        <span id="db">0 darab</span>
+        <img id="ujra" src="ujra.png">
+    </div>
+</body>
+</html>
