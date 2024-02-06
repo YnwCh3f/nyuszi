@@ -33,10 +33,22 @@
         let html = "";
         function start(){
             for (let i = 0; i < 9; i++){ tomb[i] = []; for (let j = 0; j < 12; j++){
-                    html += "<img id='"+i+"x"+j+"' onmouseleave='leave("+i+","+j+")' onmouseover='over("+i+","+j+")' src='ures.png'>"
+                    html += "<img id='"+i+"x"+j+"' onmouseleave='leave("+i+","+j+")' onmouseover='over("+i+","+j+")' src='repa.png'>"
+                    tomb[i][j] = "R";
                 }
             }
             document.getElementById("container").innerHTML = html;
+            let ii = Math.floor(Math.random()*9); let jj = Math.floor(Math.random()*12);
+            tomb[ii][jj] = "N";
+            document.getElementById(ii+"x"+jj).src = "nyuszi.png";
+            for (let k = 0; k < 20; k++){
+            do{
+                ii = Math.floor(Math.random()*9);
+                jj = Math.floor(Math.random()*12);
+            }while (tomb[ii][jj] != "R");
+            document.getElementById(ii+"x"+jj).src = "kutya.png";
+            tomb[ii][jj] = "K";
+        }
         }
 
         function leave(i, j){
